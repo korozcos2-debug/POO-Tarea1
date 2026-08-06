@@ -1,5 +1,5 @@
 package herencia.facturacion;
 
-public class FacturaContacto {
+public class FacturaContado {
 
 }
