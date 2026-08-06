@@ -2,49 +2,46 @@ package herencia.facturacion;
 
 /*
  * ------------------------------------------------------------
- * Clase FacturaContado
+ * Clase FacturaCredito
  * ------------------------------------------------------------
  *
  * Explicación:
- * La clase FacturaContado hereda de Factura.
+ * La clase FacturaCredito hereda de Factura.
  *
- * Se agrega un porcentaje de descuento que se aplicará
- * al total de la factura.
+ * Se agrega un recargo y la cantidad de cuotas.
  *
- * Se utiliza super() para inicializar los atributos heredados.
+ * Se utiliza super() para inicializar la clase padre.
  *
- * Se sobrescribe calcularTotal() para aplicar el descuento.
+ * Se sobrescribe calcularTotal() para sumar el recargo.
  *
  * Casos de prueba:
- * 1. Crear una factura al contado.
- * 2. Aplicar descuento.
- * 3. Verificar que el total nunca sea negativo.
+ * 1. Crear una factura al crédito.
+ * 2. Aplicar recargo.
+ * 3. Mostrar el número de cuotas.
  */
 
-public class FacturaContado extends Factura {
+public class FacturaCredito extends Factura {
 
-    private double descuento;
+    private double recargo;
+    private int cuotas;
 
-    public FacturaContado(int numero,
+    public FacturaCredito(int numero,
                           Cliente cliente,
                           double total,
-                          double descuento) {
+                          double recargo,
+                          int cuotas) {
 
         super(numero, cliente, total);
-        this.descuento = descuento;
+
+        this.recargo = recargo;
+        this.cuotas = cuotas;
 
     }
 
     @Override
     public double calcularTotal() {
 
-        double totalFinal = total - descuento;
-
-        if (totalFinal < 0) {
-            totalFinal = 0;
-        }
-
-        return totalFinal;
+        return total + recargo;
 
     }
 
@@ -52,7 +49,9 @@ public class FacturaContado extends Factura {
     public void mostrarFactura() {
 
         super.mostrarFactura();
-        System.out.println("Descuento : Q" + descuento);
+
+        System.out.println("Recargo : Q" + recargo);
+        System.out.println("Cuotas  : " + cuotas);
         System.out.println("Total Final : Q" + calcularTotal());
 
     }
